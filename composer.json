@@ -2,6 +2,7 @@
     "name": "yuninf/addons",
     "description": "addons package for thinkphp5",
     "homepage": "https://github.com/yuninf/tp5-addons",
+    "type": "library",
     "license": "Apache-2.0",
     "version": "1.0.2",
     "authors": [
