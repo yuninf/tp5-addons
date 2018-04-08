@@ -35,7 +35,7 @@ class Base extends Controller
         'view_path' => '',
         'view_suffix' => 'html',
         'strip_space' => true,
-        'view_depr' => DS,
+        'view_depr' => '/',
         'tpl_begin' => '{',
         'tpl_end' => '}',
         'taglib_begin' => '{',
@@ -67,7 +67,7 @@ class Base extends Controller
         $view_path = $this->config['view_path'] ?: 'view';
 
         // 重置配置
-        Config::set('template.view_path', ADDON_PATH . $this->addon . DS . $view_path . DS);
+        Config::set('template.view_path', ADDON_PATH . $this->addon . '/' . $view_path . '/');
 
         parent::__construct($request);
     }
@@ -89,9 +89,9 @@ class Base extends Controller
             $template = str_replace(['/', ':'], $depr, $template);
             if ('' == $template) {
                 // 如果模板文件名为空 按照默认规则定位
-                $template = str_replace('.', DS, $controller) . $depr . $this->action;
+                $template = str_replace('.', '/', $controller) . $depr . $this->action;
             } elseif (false === strpos($template, $depr)) {
-                $template = str_replace('.', DS, $controller) . $depr . $template;
+                $template = str_replace('.', '/', $controller) . $depr . $template;
             }
         }
         return parent::fetch($template, $vars, $replace, $config);

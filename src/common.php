@@ -8,7 +8,8 @@
 // +----------------------------------------------------------------------
 // | 插件管理共用
 // +----------------------------------------------------------------------
-
+//过滤DS错误
+error_reporting(0);
 use think\Hook;
 use think\Config;
 use think\Loader;
@@ -17,15 +18,15 @@ use think\Route;
 use think\Db;
 
 // 定义插件目录
-define('ADDON_PATH', ROOT_PATH . 'addons' . DS);
+define('ADDON_PATH', __DIR__ . '/../../../../addons/');
 
 // 定义路由
 Route::any('addons/execute/:route', "\\think\\addons\\Base@execute");
 
 // 如果插件目录不存在则创建
-if (!is_dir(ADDON_PATH)) {
-    @mkdir(ADDON_PATH, 0777, true);
-}
+//if (!is_dir(ADDON_PATH)) {
+//  @mkdir(ADDON_PATH, 0777, true);
+//}
 
 // 注册类的根命名空间
 Loader::addNamespace('addons', ADDON_PATH);
